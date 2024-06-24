@@ -22,8 +22,13 @@ const resourceService = new FetchService();
   },
   methods: {
     async getCatFacts(): Promise<string> {
-      const cats = await resourceService.fetchData();
-      return cats;
+      let catFact = "Unable to retrieve cat facts";
+      try {
+        catFact = await resourceService.fetchData();
+      } catch (error) {
+        console.log(`Error: ${error}`);
+      }
+      return catFact;
     },
   },
   async mounted() {
